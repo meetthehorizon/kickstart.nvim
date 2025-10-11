@@ -203,6 +203,30 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 vim.keymap.set('n', '<C-S-h>', '<C-w>H', { desc = 'Move window to the left' })
 vim.keymap.set('n', '<C-S-j>', '<C-w>J', { desc = 'Move window to the lower' })
 
+-- Resize windows
+vim.keymap.set('n', '<A-h>', '<C-w><', { desc = 'Decrease window width' })
+vim.keymap.set('n', '<A-l>', '<C-w>>', { desc = 'Increase window width' })
+vim.keymap.set('n', '<A-j>', '<C-w>-', { desc = 'Decrease window height' })
+vim.keymap.set('n', '<A-k>', '<C-w>+', { desc = 'Increase window height' })
+
+-- Close current / other windows
+vim.keymap.set('n', '<leader>wc', '<C-w>c', { desc = 'Close current window' })
+vim.keymap.set('n', '<leader>wo', '<C-w>o', { desc = 'Close all other windows' })
+
+-- Split horizontally / vertically
+vim.keymap.set('n', '<leader>ws', '<C-w>s', { desc = 'Horizontal split' })
+vim.keymap.set('n', '<leader>wv', '<C-w>v', { desc = 'Vertical split' })
+
+-- Create / close tabs
+vim.keymap.set('n', '<leader>tn', ':tabnew<CR>', { desc = 'New tab' })
+vim.keymap.set('n', '<leader>tc', ':tabclose<CR>', { desc = 'Close current tab' })
+vim.keymap.set('n', '<leader>to', ':tabonly<CR>', { desc = 'Close all other tabs' })
+
+-- Navigate tabs
+for i = 1, 9 do
+  vim.keymap.set('n', '<leader>' .. i, i .. 'gt', { desc = 'Go to tab ' .. i })
+end
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
@@ -272,6 +296,7 @@ require('lazy').setup({
   { -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
     opts = {
+      current_line_blame = true,
       signs = {
         add = { text = '+' },
         change = { text = '~' },
@@ -669,9 +694,9 @@ require('lazy').setup({
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
-        -- clangd = {},
+        clangd = {},
         -- gopls = {},
-        -- pyright = {},
+        pyright = {},
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -982,7 +1007,7 @@ require('lazy').setup({
   --    This is the easiest way to modularize your config.
   --
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
-  -- { import = 'custom.plugins' },
+  { import = 'custom.plugins' },
   --
   -- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
   -- Or use telescope!
