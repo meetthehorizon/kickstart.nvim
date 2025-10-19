@@ -11,43 +11,27 @@ return {
       {
         '<leader>e',
         function()
-          local wins = vim.api.nvim_tabpage_list_wins(0)
-          local neo_win = nil
-
-          -- Identify the Neo-tree window
-          for _, win in ipairs(wins) do
-            local buf = vim.api.nvim_win_get_buf(win)
-            local ft = vim.bo[buf].filetype
-            if ft == 'neo-tree' then
-              neo_win = win
-              break
-            end
-          end
-
-          -- If Neo-tree window is found
-          if neo_win then
-            local cur_win = vim.api.nvim_get_current_win()
-
-            -- If Neo-tree is open and not focused, focus on it
-            if cur_win ~= neo_win then
-              vim.api.nvim_set_current_win(neo_win)
-            else
-              -- If Neo-tree is open and focused, toggle it
-              vim.cmd 'Neotree toggle'
-            end
-          else
-            -- If Neo-tree is not open, open and focus on it
-            vim.cmd 'Neotree toggle'
-            vim.cmd 'Neotree focus'
-          end
+          vim.cmd 'Neotree toggle'
         end,
-        desc = 'Toggle Neo-tree and focus',
+        desc = 'Toggle Neo-tree an focus',
+      },
+    },
+    opts = {
+      filesystem = {
+        follow_current_file = {
+          enabled = true,
+          leave_dirs_open = false,
+        },
+        use_libuv_file_watcher = true,
+      },
+      window = {
+        auto_focus = false,
       },
     },
   },
   {
     'antosha417/nvim-lsp-file-operations',
-    dependencies = {
+    ependencies = {
       'nvim-lua/plenary.nvim',
       'nvim-neo-tree/neo-tree.nvim', -- makes sure that this loads after Neo-tree.
     },
