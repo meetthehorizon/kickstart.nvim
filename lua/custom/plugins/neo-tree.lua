@@ -13,7 +13,27 @@ return {
         function()
           vim.cmd 'Neotree toggle'
         end,
-        desc = 'Toggle Neo-tree an focus',
+        desc,
+      },
+      {
+        'C',
+        function()
+          local state = require('neo-tree.sources.manager').get_state 'filesystem'
+          local node = state and state.selected_node
+          if node then
+            local path = node.path
+            if node.type == 'file' then
+              path = vim.fn.fnamemodify(path, ':h') -- Get parent directory if it's a file
+            end
+            vim.cmd('tcd ' .. path)
+            print('Changed directory to: ' .. path)
+          else
+            print 'No node selected'
+          end
+        end,
+        desc = 'Change directory to the highlighted Neo-tree node',
+        noremap = true,
+        silent = true,
       },
     },
     opts = {
