@@ -242,7 +242,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 vim.api.nvim_create_autocmd('FileType', {
-  pattern = 'go',
+  pattern = { 'go', 'cpp' },
   callback = function()
     vim.opt_local.expandtab = false -- use tabs (Go standard)
     vim.opt_local.tabstop = 4 -- show tabs as 4 spaces wide
