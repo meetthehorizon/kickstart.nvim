@@ -29,6 +29,12 @@ return {
         received_contests_directory = '$(CWD)/problems/$(CONTEST)',
         received_contests_prompt_directory = false,
       }
+
+      vim.keymap.set('n', '<leader>crc', '<cmd>CompetiTest receive contest<CR>', { desc = '[C]omptitest [R]eceive [C]ontest' })
+      vim.keymap.set('n', '<leader>crp', '<cmd>CompetiTest receive problem<CR>', { desc = '[C]omptitest [R]eceive [P]roblem' })
+      vim.keymap.set('n', '<leader>crs', '<cmd>CompetiTest receive stop<CR>', { desc = '[C]omptitest [R]eceive [S]top' })
+      vim.keymap.set('n', '<leader>cR', '<cmd>CompetiTest run<CR>', { desc = '[C]omptitest [R]un' })
+      vim.keymap.set('n', '<leader>csu', '<cmd>CompetiTest show_ui<CR>', { desc = '[C]omptitest [S]how [U]I' })
     end,
   },
 }
