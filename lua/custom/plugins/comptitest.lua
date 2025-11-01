@@ -28,7 +28,6 @@ return {
         received_problems_path = '$(CWD)/problems/$(PROBLEM).$(FEXT)',
         received_contests_directory = '$(CWD)/problems/$(CONTEST)',
         received_contests_prompt_directory = false,
-        start_receiving_persistently_on_setup = true,
       }
     end,
   },
