@@ -152,14 +152,11 @@ vim.o.splitbelow = true
 vim.o.list = true
 vim.opt.listchars = {
   tab = '→ ',
-  space = '·',
   trail = '•',
   nbsp = '⍽',
   eol = '⏎',
   extends = '›',
   precedes = '‹',
-  lead = '·',
-  multispace = '···',
 }
 
 -- Preview substitutions live, as you type!
@@ -886,7 +883,6 @@ require('lazy').setup({
         --
         -- See :h blink-cmp-config-keymap for defining your own keymap
         preset = 'default',
-        ['<Tab>'] = { 'select_and_accept', 'fallback' },
         -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
         --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
       },
@@ -894,7 +890,7 @@ require('lazy').setup({
       appearance = {
         -- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
         -- Adjusts spacing to ensure icons are aligned
-        nerd_font_variant = 'mono',
+        nerd_font_variant = 'normal',
       },
 
       completion = {
@@ -936,6 +932,7 @@ require('lazy').setup({
     config = function()
       ---@diagnostic disable-next-line: missing-fields
       require('catppuccin').setup {
+        no_italic = true,
         flavour = 'mocha',
         transparent_background = true,
         float = {
