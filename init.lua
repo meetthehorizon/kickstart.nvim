@@ -831,6 +831,7 @@ require('lazy').setup({
         cpp = { 'clang-format' },
         c = { 'clang-format' },
         go = { 'goimports', 'golines' },
+        yaml = { 'prettier' },
       },
     },
   },
