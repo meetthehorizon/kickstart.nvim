@@ -265,6 +265,16 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
+vim.filetype.add {
+  extension = {
+    cabal = 'cabal',
+  },
+  filename = {
+    ['cabal.project'] = 'cabal',
+    ['cabal.project.local'] = 'cabal',
+  },
+}
+
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -757,6 +767,9 @@ require('lazy').setup({
             },
           },
         },
+        hls = {
+          filetypes = { 'haskell', 'lhaskell', 'cabal' },
+        },
       }
 
       -- Ensure the servers and tools above are installed
@@ -825,6 +838,13 @@ require('lazy').setup({
           }
         end
       end,
+      formatters = {
+        ['cabal-fmt'] = {
+          command = 'cabal-fmt',
+          args = { '-' },
+          stdin = true,
+        },
+      },
       formatters_by_ft = {
         lua = { 'stylua' },
         python = { 'black', 'ruff' },
@@ -832,6 +852,8 @@ require('lazy').setup({
         c = { 'clang-format' },
         go = { 'goimports', 'golines' },
         yaml = { 'prettier' },
+        cabal = { 'cabal-fmt' },
+        haskell = { 'ormolu' },
       },
     },
   },
