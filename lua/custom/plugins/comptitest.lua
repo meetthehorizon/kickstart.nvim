@@ -27,7 +27,6 @@ return {
         companion_port = 4244,
         received_problems_path = '$(CWD)/problems/$(PROBLEM).$(FEXT)',
         received_contests_directory = '$(CWD)/problems/$(CONTEST)',
-        received_contests_prompt_directory = false,
       }
 
       vim.keymap.set('n', '<leader>crc', '<cmd>CompetiTest receive contest<CR>', { desc = '[C]omptitest [R]eceive [C]ontest' })
